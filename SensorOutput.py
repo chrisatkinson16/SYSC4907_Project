@@ -40,7 +40,7 @@ def isOccupied(channel):
 
 GPIO.add_event_detect(channel, GPIO.BOTH, bouncetime=300)  # detects both rising and falling edge and sets debounce time to 300 ms
                                                            # this allows for readings from moisture sensor to be taken everytime they change state between Boolean 1 and 0
-GPIO.add_event_callback(channel, getMoisture)              # Calls getMoisture back to run again to stay up to date on chnaging state between Boolean 1 and 0
+GPIO.add_event_callback(channel, isOccupied)              # Calls getMoisture back to run again to stay up to date on chnaging state between Boolean 1 and 0
 
 # function that simulates Temperature sensor, producing random values between 15 and 25
 def getTemp():
