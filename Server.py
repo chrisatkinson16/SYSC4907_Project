@@ -27,10 +27,10 @@ tempMax = []
 # Populate the values in the arrays with values from the database
 for row in cursor:
     id.append(row['ID'])
-    userName.append(row['Plant Name'])
-    expectedOccupancy.append(row['Moisture'])
-    tempMin.append(row['pH min'])
-    tempMax.append(row['pH max'])
+    userName.append(row['User Name'])
+    expectedOccupancy.append(row['Occupancy'])
+    tempMin.append(row['Temp min'])
+    tempMax.append(row['Temp max'])
 
 #  This function checks that the connection to the server is good. and sends a confirmation message back to the headless RPi
 def transmission(field1 = None, field2= None, field3= None, field4= None, field5= None, field6= None, field7= None, field8= None):
