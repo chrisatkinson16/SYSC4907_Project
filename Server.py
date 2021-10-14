@@ -1,7 +1,7 @@
-# L1-F-4 Water plEase
+# SYSC 4907 IOT project
 # Server RPi code
 # @author Chris Atkinson, Kevin Belanger
-# @version Version 1, 24 November 2020
+# @version Version 1, October 15th 2021
 
 import requests
 import json
@@ -11,26 +11,26 @@ import time
 import sqlite3
 
 # set up a cursor for the database
-dbconnect = sqlite3.connect("/Users/User/Downloads/SQLiteStudio/plant_database.db");
+dbconnect = sqlite3.connect("/Users/User/Downloads/SQLiteStudio/userinfo_database.db");
 dbconnect.row_factory = sqlite3.Row;
 cursor = dbconnect.cursor();
 # select the whole database
-cursor.execute('SELECT * FROM plant_database')
+cursor.execute('SELECT * FROM userinfo_database')
 
 # Set up arrays for the values in the database
 id = []
-plantName = []
-expectedMoisture = []
-pHmin = []
-pHmax = []
+userName = []
+expectedOccupancy = []
+tempMin = []
+tempMax = []
 
 # Populate the values in the arrays with values from the database
 for row in cursor:
     id.append(row['ID'])
-    plantName.append(row['Plant Name'])
-    expectedMoisture.append(row['Moisture'])
-    pHmin.append(row['pH min'])
-    pHmax.append(row['pH max'])
+    userName.append(row['User Name'])
+    expectedOccupancy.append(row['Occupancy'])
+    tempMin.append(row['Temp min'])
+    tempMax.append(row['Temp max'])
 
 #  This function checks that the connection to the server is good. and sends a confirmation message back to the headless RPi
 def transmission(field1 = None, field2= None, field3= None, field4= None, field5= None, field6= None, field7= None, field8= None):
@@ -76,53 +76,53 @@ while(True):
 
 print(readHeadlessPi()['field1'])  # These two prints confirm that the RPi has read the correct information.
 print(readHeadlessPi()['field2'])
-moisture = int(readHeadlessPi()['field1'])  # Set moisture and pH variables to be used in later functions.
-pH = float (readHeadlessPi()['field2'])
+occupancy = int(readHeadlessPi()['field1'])  # Set moisture and pH variables to be used in later functions.
+temp = float (readHeadlessPi()['field2'])
 
-# This function compares the moisture that was found by the sensor and compares it ot the expected moisture which is 1
+# This function compares the occupancy compares it to the expected occupancy which is 1
 # and returns 1 or 0 accordingly.
-def compareMoisture(j):
-    if (moisture == expectedMoisture[j]):
-        return 1  # If the soil is moist return 1.
+def compareOccupancy(j):
+    if (occupancy == expectedOccupancy[j]):
+        return 1  # If occupied return 1.
     else:
         return 0  # If not return 0.
 
-# This function compares the pH to the expected pH value that depends on the plant.
-# Returns 1 if pH is good and 0 if not.
-def comparepH(k):
-    if(pHmin[k] < pH) & (pH < pHmax[k]):
-        return 1  # If pH is within expected range return 1.
+# This function compares the temperature to the expected temperature value that depends on the user preference.
+# Returns 1 if temperature is good and 0 if not.
+def compareTemp(k):
+    if(tempMin[k] < temp) & (temp < tempMax[k]):
+        return 1  # If temperature is within expected range return 1.
     else:
         return 0  # If not return 0.
 
-# This function checks the compareMoisture() function to see if the plant needs water
+# This function checks the compareOccupancy() function to see if the Office is occupied
 # and returns the message required.
-def giveWater(l):
+def checkOccupancy(l):
     x = ' '  # Create a local variable that stores the string for later use.
-    if(compareMoisture(l) == 0):
-        x = "Water plEase"  # If compareMoisture() is 0 that means it needs water so the function sets x accordingly.
+    if(compareOccupancy(l) == 0):
+        x = "The office is occupied"  # If compareMoisture() is 0 that means it needs water so the function sets x accordingly.
     else:
-        x = "No water needed"  # If compareMoisture() is 1 then no action is required.
+        x = "The office is empty"  # If compareMoisture() is 1 then no action is required.
     return x
 
-# This function checks if the comparepH() function has flagged a need for pH supplements or not
+# This function checks if the compareTemp() function has flagged a need to raise the temperature or not
 # and returns the message required.
-def givepHSuppliment(m):
+def raiseTemp(m):
     y = ' '
-    if(comparepH(m) == 0):
-        y = "Give pH suppliment"  # If comparepH() is 0 that means it needs a pH supplement so the function sets y accordingly.
+    if(compareTemp(m) == 0):
+        y = "fix the Temperature"  # If compareTemp() is 0 that means it needs to change the temperature so the function sets y accordingly.
     else:
-        y = "pH is sufficient"  # If compareMoisture() is 1 then no action is required.
+        y = "Temperature is fine"  # If compareTemp() is 1 then no action is required.
     return y
 
 # Gets user data to set the plant that they have.
-def setPlant():
-    userPlant = plantName[0]
+def setName():
+    user = userName[0]
 
-# prints the current moisture
-def printMoisture():
-    print(moisture)
+# prints the current occupancy
+def printOccupancy():
+    print(occupancy)
 
-# prints the current pH
-def printpH():
-    print(pH)
+# prints the current Temperature
+def printTemp():
+    print(temp)
