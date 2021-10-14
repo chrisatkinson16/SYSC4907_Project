@@ -1,7 +1,7 @@
-# L1-F-4 Water plEase
-# @description Returns collected moisture and pH values from Data collector RPi to Server RPi
-# @author Conor Johnson Martin & Chris Atkinson
-# @version Version 1, 24 November 2020
+# SYSC 4907 IOT project
+# @description Returns collected values
+# @author Chris Atkinson
+# @version Version 1, October 15th 2021
 
 import requests
 import json
@@ -13,7 +13,7 @@ import time
 import random
 
 key = "LQ1LYNA564IB0EX5"     # Server RPi write key
-channel = 21		     # To be used later in function getMoisture to access Pin 40: GPIO21 on the RPi
+channel = 21		     # To be used later to access Pin 40: GPIO21 on the RPi
 GPIO.setmode(GPIO.BCM)       # Setting up GPIO input/output pin naming scheme to BCM (Broadcom SOC Channel) to access GPIO21 by simply using "channel" which was set in the previous line
 GPIO.setup(channel, GPIO.IN) # Sets GPIO21 to an input pin
 
@@ -28,16 +28,13 @@ def readServerRPi():
     field_1 = get_data['feeds']
     return (field_1)[0]
 
-# function that prints a statement depending on what the moisture sensor is observing
-# Returns Boolean "i"
-# i is 0 if no water, else i is 1
-# Value stored in i is what is sent to Server RPi, which uses this data in GUI and Database
-def getMoisture(channel):
+# function that prints a statement depending on wether or not there are poeple in the office
+def isOccupied(channel):
     if GPIO.input(channel):
-        print("no water detected")
+        print("no people in office")
         i = 0
     else:
-        print("water detected")
+        print("people in the office")
         i = 1
     return i
 
@@ -45,25 +42,25 @@ GPIO.add_event_detect(channel, GPIO.BOTH, bouncetime=300)  # detects both rising
                                                            # this allows for readings from moisture sensor to be taken everytime they change state between Boolean 1 and 0
 GPIO.add_event_callback(channel, getMoisture)              # Calls getMoisture back to run again to stay up to date on chnaging state between Boolean 1 and 0
 
-# function that simulates pH sensor, producing random values between 6.0 and 8.0
-def getpH():
-    return random.randint(35,90)/10
+# function that simulates Temperature sensor, producing random values between 15 and 25
+def getTemp():
+    return random.randint(150, 250)/10
 
-# function that sends the moisture and pH values collected to the Server RPi using the json code above and linking with server pi key
-# "moisture" is either a 1 or a 0, and "pH" is a randint between 0.35 and 0.9
-# prints moisture and pH once they are delivered to Server RPi
+# function that sends temperature and Occupancy values collected to the Server RPi using the json code above and linking with server pi key
+# "occupancy" is either a 1 or a 0, and "Temperature" is a randint between 15 and 25
+# prints moisture and Temperature once they are delivered to Server RPi
 def transmission():
     while True:
-        moisture = getMoisture(channel)
-        pH = getpH()
-        params = urllib.parse.urlencode({'field1': moisture,'field2': pH, 'key': key})
+        occupancy = isOccupied(channel)
+        temperature = getTemp()
+        params = urllib.parse.urlencode({'field1': occupancy,'field2': temperature, 'key': key})
         headers = {"Content-typZZe": "application/x-www-form-urlencoded", "Accept": "text/plain"}
         conn = http.client.HTTPConnection("api.thingspeak.com:80")
         try:
             conn.request("POST", "/update", params, headers)
             response = conn.getresponse()
-            print(moisture)
-            print(pH)
+            print(occupancy)
+            print(temperature)
             print(response.status, response.reason)
             data = response.read()
             conn.close()
