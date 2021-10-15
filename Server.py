@@ -11,11 +11,11 @@ import time
 import sqlite3
 
 # set up a cursor for the database
-dbconnect = sqlite3.connect("/Users/User/Downloads/SQLiteStudio/userinfo_database.db");
+dbconnect = sqlite3.connect("C:/Users/User/Downloads/SYSC4907_Project-main/SYSC4907_Project-main/plant_database.db");
 dbconnect.row_factory = sqlite3.Row;
 cursor = dbconnect.cursor();
 # select the whole database
-cursor.execute('SELECT * FROM userinfo_database')
+cursor.execute('SELECT * FROM plant_database')
 
 # Set up arrays for the values in the database
 id = []
@@ -27,10 +27,10 @@ tempMax = []
 # Populate the values in the arrays with values from the database
 for row in cursor:
     id.append(row['ID'])
-    userName.append(row['User Name'])
-    expectedOccupancy.append(row['Occupancy'])
-    tempMin.append(row['Temp min'])
-    tempMax.append(row['Temp max'])
+    userName.append(row['Plant Name'])
+    expectedOccupancy.append(row['Moisture'])
+    tempMin.append(row['pH min'])
+    tempMax.append(row['pH max'])
 
 #  This function checks that the connection to the server is good. and sends a confirmation message back to the headless RPi
 def transmission(field1 = None, field2= None, field3= None, field4= None, field5= None, field6= None, field7= None, field8= None):
