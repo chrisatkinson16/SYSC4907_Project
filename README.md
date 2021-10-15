@@ -16,7 +16,7 @@ As part of the project, the team will design, implement, and deploy an IoT-enabl
 How to run the system
 ---------------------
 
-The system is run by running the main() function in the gui class 
+The system is run by running the GUI class 
 
 
 -----------------
