@@ -1,27 +1,65 @@
 import random
+import datetime
 
 post = []
 
-temperature = ["21 degrees", "30 degrees", "-5 degrees", "-15 degrees", "-30 degrees"]
-location = ["work", "home", "the office", "the store", "the gas station"]
-currentTime = ["8 AM", "5 PM", "10 AM", "3 PM", "12 AM"]
-ETA = ["5 minutes", "10 minutes", "15 minutes", "20 minutes", "25 minutes"]
-holiday = ["Christmas", "Thanksgiving", "Easter", "Halloween", "Labour day"]
-date = ["November 20th 2021", "January 1st 2022", "March 12th 2022", "April 29th 2022", "October 23th 2022"]
-inOut = ["inside", "outside"]
-relativeTime = ["today", "tomorrow", "next week", "next month"]
 
+def getKeywords():
+    """ Random temperature calculation """
+    temp = str(random.randint(-30, 30))
+    if temp == 1 or temp == -1:
+        temp += " degree"
+    temp += " degrees"
 
-def formSentence():
-    x = random.randint(1, 9)
+    """ Random time calculation """
+    hour = str(random.randint(0, 23))
+    minutes_tens = str(random.randint(0, 5))
+    minutes_ones = str(random.randint(0, 9))
+    time = str(hour + ":" + minutes_tens + "" + minutes_ones)
 
-    temp = (random.choice(temperature))
-    loc = (random.choice(location))
-    time = (random.choice(currentTime))
-    eta = (random.choice(ETA))
+    """ Random estimated time or arrival calculation """
+    eta = str(str(random.randint(5, 60)) + " minutes")
+
+    """ Random date calculation """
+    start = datetime.date(2022, 1, 1)
+    end = datetime.date(2022, 12, 31)
+    rand_range = end - start
+    days_between_dates = rand_range.days
+    rand_range = random.randrange(days_between_dates)
+    day = str(start + datetime.timedelta(days=rand_range))
+
+    """ Random holiday calculation """
+    holiday = ["Christmas", "Thanksgiving", "Easter", "Halloween", "Labour day"]
     holi = (random.choice(holiday))
-    day = (random.choice(date))
+
+    """ Random location calculation """
+    location = ["work", "home", "the office", "the store", "the gas station"]
+    loc = (random.choice(location))
+
+    """ Random relative time calculation """
+    relativeTime = ["today", "tomorrow", "next week", "next month"]
     relative = (random.choice(relativeTime))
+
+    """ Random relative time calculation """
+    number = str(random.randint(2, 10))
+
+    keywords = [temp, time, eta, day, holi, loc, relative, number]
+    return keywords
+
+
+def generatePost():
+    x = random.randint(1, 14)
+    n = 0
+
+    keywords = getKeywords()
+    temp = keywords[0]
+    time = keywords[1]
+    eta = keywords[2]
+    day = keywords[3]
+    holi = keywords[4]
+    loc = keywords[5]
+    relative = keywords[6]
+    number = keywords[7]
 
     if x == 1:
         n = "It is " + temp + " outside right now."
@@ -41,14 +79,23 @@ def formSentence():
         n = "I won't make it to work until " + time + " " + relative + "."
     elif x == 9:
         n = "I am going to be " + eta + " late to work today."
+    elif x == 10:
+        n = "I’m leaving for my break at " + time + "."
+    elif x == 11:
+        n = "I am working from home on " + day + "."
+    elif x == 12:
+        n = "I am working from the office on " + day + "."
+    elif x == 13:
+        n = "There’s construction on the highway heading to " + loc + "."
+    elif x == 14:
+        n = "There are " + number + " people in my office today."
     else:
         print("Unknown sentence structure")
     print(n)
     post.append(n)
 
 
-for i in range(10):
-    formSentence()
-
+for i in range(100):
+    generatePost()
 
 print(post)
