@@ -1,24 +1,24 @@
-import paho.mqtt.client as mqtt #import the client1
+import paho.mqtt.client as mqtt
 import time
 
-data = 'test'
-def on_message(client, userdata, message):
-    count = 0
-    if(str(message.payload.decode("utf-8")) != "hoj"):
-        print("message received " ,str(message.payload.decode("utf-8")))
-        data = str(message.payload.decode("utf-8")) + str(count)
-        count += 1
-
-
-broker_address="broker.emqx.io"
-print("creating new instance")
-client = mqtt.Client("P1") #create new instance
-client.on_message=on_message #attach function to callback
-print("connecting to broker")
-client.connect(broker_address) #connect to broker
-while(True):
-    client.loop_start() #start the loop
+temp = 'test'
+def on_connect(client, userdata, flags, rc):
+    print(f"Connected with result code {rc}")
     client.subscribe("raspberry/topic")
-    time.sleep(4) # wait
-    client.loop_stop() #stop the loop
 
+
+def on_message(client, uerdata, msg):
+    print(f"{msg.payload}")
+    global temp
+    temp = f"{msg.payload}"
+
+def run():
+    client = mqtt.Client()
+    client.loop_start()
+    client.on_connect = on_connect
+    client.on_message = on_message
+    client.will_set('raspberry/status', b'{"status": "Off"}')
+    client.connect("broker.emqx.io", 1883, 60)
+    time.sleep(5)
+    client.loop_stop()
+    return temp[1:]
