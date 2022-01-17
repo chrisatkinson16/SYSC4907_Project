@@ -10,4 +10,7 @@ def home(request):
 
 
 def live(request):
-    return render(request, 'posts/live.html', {'title': 'Live'})
+    context = {
+        'sensor_data': '20 degrees'
+    }
+    return render(request, 'posts/live.html', context)
