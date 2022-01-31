@@ -7,6 +7,8 @@ import paho.mqtt.client as mqtt
 import time
 import board
 import adafruit_dht
+from datetime import date
+from datetime import datetime
 
 # Initial the dht device, with data pin connected to:
 dhtDevice = adafruit_dht.DHT11(board.D18)
@@ -21,11 +23,13 @@ client = mqtt.Client()
 client.on_connect = on_connect
 client.connect("broker.emqx.io", 1883, 60)
 
+
 # you can pass DHT22 use_pulseio=False if you wouldn't like to use pulseio.
 # This may be necessary on a Linux single board computer like the Raspberry Pi,
 # but it will not work in CircuitPython.
 # dhtDevice = adafruit_dht.DHT22(board.D18, use_pulseio=False)
-
+file = open("test.txt", "w")
+file.write("Temperature\tDate\tTime\n")
 while True:
     try:
         # Print the values to the serial port
@@ -50,6 +54,11 @@ while True:
     temp_hum_str = 'The temperature is ' + str(temperature_c) + ' degrees right now'
     client.publish('raspberry/topic', payload=temp_hum_str, qos=0, retain=False)
     print(f"send: {temp_hum_str} C to raspberry/topic")
+    today = date.today()
+    d1 = today.strftime("%d/%m/%Y")
+    now = datetime.now().time()
+    file.write(str(temperature_c) + "\t" + d1 + "\t" + str(now) + "\n")
+    file.flush()
     time.sleep(2.0)
-    
 client.loop_forever()
+
