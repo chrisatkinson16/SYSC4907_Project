@@ -47,7 +47,7 @@ while True:
         dhtDevice.exit()
         raise error
     
-    temp_hum_str = str(temperature_c) + 'C '+ str(humidity) + '%'
+    temp_hum_str = "The temperature is "str(temperature_c) + 'C '+ "right now"
     client.publish('raspberry/topic', payload=temp_hum_str, qos=0, retain=False)
     print(f"send: {temp_hum_str} C to raspberry/topic")
     time.sleep(2.0)
