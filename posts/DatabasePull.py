@@ -1,7 +1,5 @@
-
 import requests
 import json
-import pprint
 import re
 
 url = "https://data.mongodb-api.com/app/data-pydwj/endpoint/data/beta/action/findOne"
@@ -23,8 +21,7 @@ response = requests.request("POST", url, headers=headers, data=payload)
 
 list = response.text.split('{"payload":')
 list.remove(list[0])
-print ([re.sub('[^a-zA-Z0-9]+', ' ', _) for _ in list])
+print([re.sub('[^a-zA-Z0-9]+', ' ', _) for _ in list])
 
-    
 with open('data.json', 'w', encoding='utf-8') as f:
     json.dump(list, f, ensure_ascii=False, indent=4)
