@@ -2,15 +2,18 @@ import paho.mqtt.client as mqtt
 import time
 
 temp = 'test'
+
+
 def on_connect(client, userdata, flags, rc):
     print(f"Connected with result code {rc}")
     client.subscribe("raspberry/topic")
 
 
-def on_message(client, uerdata, msg):
+def on_message(client, userdata, msg):
     print(f"{msg.payload}")
     global temp
     temp = f"{msg.payload}"
+
 
 def run():
     client = mqtt.Client()
