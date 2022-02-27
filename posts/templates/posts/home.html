@@ -1,15 +1,65 @@
 {% extends "posts/base.html" %}
 {% block content %}
-    {% for post in posts %}
-        <article class="media content-section">
-          <div class="media-body">
-            <div class="article-metadata">
-              <a class="mr-2" href="#">{{ post.author }}</a>
-              <small class="text-muted">{{ post.date_posted }}</small>
-            </div>
-            <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
-            <p class="article-content">{{ post.content }}</p>
-          </div>
-        </article>
-    {% endfor %}
+    <body style="margin: 0px; padding: 0px; height: 100%; width: 100%; text-align: left;">
+    <div style="height: 100%; width: 100%;">
+
+    <div style="height:10%; width: 100%; text-align: center; background-color: light grey;"></div>
+
+    <div style="height:60%; width: 100%; display: table;">
+    <div style="float:left; height:100%; width: 35%; background-color: light grey;">
+        <table style="display: inline-block; border: 1px solid; float: left; ">
+		<tr>
+			<td>
+                <h3> Recommendation </h3>
+                <br />
+                <h4> Most Recent: </h4>
+                <p> {{output1}} </p>
+                <br />
+                <h4> Past: </h4>
+                <p> {{output2}} </p>
+                <p> {{output3}} </p>
+                <p> {{output4}} </p>
+                <p> {{output5}} </p>
+            </td>
+        </tr>
+		</table>
+    </div>
+    <div style="float:left; height:100%; width: 25%; background-color: light grey;">
+        <h3> Live Data </h3>
+        <br />
+        <p> Temperature: {{sensor_data}} </p>
+        <p> Light Level: 1 </p>
+        <p> Station 1: No Motion Detected </p>
+        <p> Station 2: Motion Detected </p>
+        <p> Station 3: Motion Detected </p>
+        <p> Station 4: No Motion Detected </p>
+        <br />
+        <h4> Capacity Limit: </h4>
+        <p> 4 </p>
+        <br />
+        <h4> Spots Left: </h4>
+        <p> 2 </p>
+    </div>
+    <div style="float:left; height:100%; width: 40%; background-color: light grey;">
+        <h3> Social Media </h3>
+        <br />
+        {% for post in posts %}
+            <article class="media content-section">
+              <div class="media-body">
+                <div class="article-metadata">
+                  <a class="mr-2" href="#">{{ post.author }}</a>
+                  <small class="text-muted">{{ post.date_posted }}</small>
+                </div>
+                <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
+                <p class="article-content">{{ post.content }}</p>
+              </div>
+            </article>
+        {% endfor %}
+    </div>
+    </div>
+
+    <div style="height:10%; width: 100%; text-align: center; background-color: light grey;"></div>
+
+    </div>
+    </body>
 {% endblock content %}
