@@ -1,0 +1,14 @@
+{
+  "Preferences": {
+    "Office Closed": {
+      "Temperature": "18",
+      "Light": "0",
+      "Motion": "0"
+    },
+    "Office Open": {
+      "Temperature": "21",
+      "Light": "1",
+      "Motion": "1"
+    }
+  }
+}
