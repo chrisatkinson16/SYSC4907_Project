@@ -12,7 +12,6 @@ import adafruit_dht
 dhtDevice = adafruit_dht.DHT11(board.D18)
 
 
-
 def on_connect(client, userdata, flags, rc):
     print(f"Connected with result code {rc}")
     
@@ -25,7 +24,6 @@ client.connect("broker.emqx.io", 1883, 60)
 # This may be necessary on a Linux single board computer like the Raspberry Pi,
 # but it will not work in CircuitPython.
 # dhtDevice = adafruit_dht.DHT22(board.D18, use_pulseio=False)
-
 while True:
     try:
         # Print the values to the serial port
@@ -47,7 +45,7 @@ while True:
         dhtDevice.exit()
         raise error
     
-    temp_hum_str = "The temperature is "str(temperature_c) + 'C '+ "right now"
+    temp_hum_str = str(temperature_c) + 'C '+ str(humidity) + '%'
     client.publish('raspberry/topic', payload=temp_hum_str, qos=0, retain=False)
     print(f"send: {temp_hum_str} C to raspberry/topic")
     time.sleep(2.0)
