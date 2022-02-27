@@ -1,13 +1,11 @@
 {% extends "posts/base.html" %}
 {% block content %}
     <h1> Live Data </h1>
-    <h3> Location </h3>
-    <p> Region: {{sensor_data}}</p>
-    <p> Country: </p>
-    <p> Latitude: </p>
-    <p> Longitude: </p>
-    <p> Timezone ID: </p>
-    <p> Local Time: </p>
+    <h3> Current Office Space Statistics </h3>
+    <p> Temperature: {{sensor_data}} </p>
+    <p> Light Level: 1 </p>
+    <p> Motion Detected: No Motion Detected </p>
+<!--
     <div>
         <h3> Current Statistics </h3>
         <p> Temperature (C): </p>
@@ -23,5 +21,5 @@
             <p> O3: </p>
             <p> SO2: </p>
         </div>
-    </div>
+    </div> !-->
 {% endblock content %}
