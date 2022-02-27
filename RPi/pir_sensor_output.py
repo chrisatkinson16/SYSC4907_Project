@@ -16,4 +16,3 @@ while True:
     else:
         print("No Motion")
     time.sleep(6)
-        
