@@ -1,0 +1,14 @@
+{% extends "posts/base.html" %}
+{% block content %}
+    <h3> Capacity Limits </h3>
+    <form action="/team_name_url/" method="post">
+        <label for="team_name">Enter capacity limit of office: </label>
+        <input id="team_name" type="number" name="name_field" value="4">
+        <input type="submit" value="OK">
+    </form>
+    <h3> Work Stations </h3>
+    <p> Station 1: No Motion Detected </p>
+    <p> Station 2: Motion Detected </p>
+    <p> Station 3: Motion Detected </p>
+    <p> Station 4: No Motion Detected </p>
+{% endblock content %}
