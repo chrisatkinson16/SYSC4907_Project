@@ -16,9 +16,21 @@ As part of the project, the team will design, implement, and deploy an IoT-enabl
 How to run the system
 ---------------------
 
-The system is run by running the GUI class 
+To start you need to setup the RPi nodes as per the pictures provided with the doccumentaiton.
+There are 3 sensor nodes one with a temperature and a light sensor, and 2 with temperature and PIR motion sensors.
 
+Then to get a set of data for the NER machine learning we have a .json file of sample social media posts and we run ner_train.py with that .json file
+to get an algorithm to use later. 
 
+After the RPis are setup they need to have the code running on them. To do this you need to load the RPi code from the zip file
+onto the RPi and open temp_output.py and start running it. Do this on all RPi nodes.
+
+After that you need to open the main project code on the main computer running the program and run RPi mqtt connect.py. 
+This will connect the RPi to the main code outputs for decision making.
+
+You can then run the GUI class and go to the website for the Web applicaiton to see the outputs and reccomendations there.
+
+Finally run DMS.py to start getting recommendations that will be outputted on the web application. 
 -----------------
 Overview of Files   
 -----------------
