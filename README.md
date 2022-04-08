@@ -31,6 +31,8 @@ This will connect the RPi to the main code outputs for decision making.
 You can then run the GUI class and go to the website for the Web applicaiton to see the outputs and reccomendations there.
 
 Finally run DMS.py to start getting recommendations that will be outputted on the web application. 
+
+
 -----------------
 Overview of Files   
 -----------------
