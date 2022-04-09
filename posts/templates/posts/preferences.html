@@ -1,0 +1,31 @@
+{% extends "posts/base.html" %}
+{% block content %}
+    <h3> Capacity </h3>
+    <form action="/team_name_url/" method="post">
+        <label for="team_name">Enter capacity limit of office: </label>
+        <input id="team_name" type="number" name="name_field" value="3">
+        <input type="submit" value="OK">
+    </form>
+    <h3> Temperature </h3>
+    <form action="/team_name_url/" method="post">
+        <label for="team_name">Enter a minimum office temperature (degrees C): </label>
+        <input id="team_name" type="number" name="name_field" value="18">
+        <input type="submit" value="OK">
+    </form>
+    <form action="/team_name_url/" method="post">
+        <label for="team_name">Enter a maximum office temperature (degrees C): </label>
+        <input id="team_name" type="number" name="name_field" value="23">
+        <input type="submit" value="OK">
+    </form>
+    <h3> Hours of Operation </h3>
+    <form action="/team_name_url/" method="post">
+        <label for="team_name">Enter an opening time for the office (24h clock): </label>
+        <input id="team_name" type="number" name="name_field" value="8">
+        <input type="submit" value="OK">
+    </form>
+    <form action="/team_name_url/" method="post">
+        <label for="team_name">Enter a closing time for the office (24h clock): </label>
+        <input id="team_name" type="number" name="name_field" value="17">
+        <input type="submit" value="OK">
+    </form>
+{% endblock content %}
