@@ -19,6 +19,8 @@ How to run the system
 To start you need to setup the RPi nodes as per the pictures provided with the doccumentaiton.
 There are 3 sensor nodes one with a temperature and a light sensor, and 2 with temperature and PIR motion sensors.
 
+on the RPis run "pip3 install adafruit-circuitpython-dht" and "sudo apt-get install libgpiod2" to download the required libraries onto the RPis 
+
 Then to get a set of data for the NER machine learning we have a .json file of sample social media posts and we run ner_train.py with that .json file
 to get an algorithm to use later. 
 
