@@ -6,5 +6,5 @@ urlpatterns = [
     path('live/', views.live, name='Post-Live'),
     path('recommendation/', views.recommendation, name='Post-Recommendation'),
     path('social/', views.social, name='Post-Social'),
-    path('capacity/', views.capacity, name='Post-Capacity'),
+    path('preferences/', views.preferences, name='Post-Preferences'),
 ]
