@@ -2,24 +2,19 @@
 {% block content %}
     <h1> Live Data </h1>
     <h3> Current Office Space Statistics </h3>
-    <p> Temperature: {{sensor_data}} </p>
-    <p> Light Level: 1 </p>
-    <p> Motion Detected: No Motion Detected </p>
-<!--
+    <p style=";font-size:24px;">Temperature (degrees C): 21</p>
+    <p style=";font-size:24px;">Light Level: 1</p>
+    <br/>
     <div>
-        <h3> Current Statistics </h3>
-        <p> Temperature (C): </p>
-        <p> Pressure (in): </p>
-        <p> Pressure (mm): </p>
-        <p> Humidity: </p>
-        <p> Feels Like: </p>
-        <p> UV Index: </p>
-        <div>
-            <h3> Air Quality </h3>
-            <p> CO: </p>
-            <p> NO2: </p>
-            <p> O3: </p>
-            <p> SO2: </p>
-        </div>
-    </div> !-->
+        <h3 style=";font-size:24px;">Current Weather Data</h3>
+        <p style=";font-size:24px;">Temperature (degrees C): 3</p>
+        <p style=";font-size:24px;">Humidity (%): 73 </p>
+    </div>
+    <br/>
+    <div>
+        <h3 style=";font-size:24px;">Sensor Health</h3>
+        <p style=";font-size:24px;">Sensor 1:  <p style="color:#038c27;font-size:22px;text-outline: 2px 2px #ff0000;">Working</p></p>
+        <p style=";font-size:24px;">Sensor 2:  <p style="color:#038c27;font-size:22px;text-outline: 2px 2px #ff0000;">Working</p></p>
+        <p style=";font-size:24px;">Sensor 3:  <p style="color:#038c27;font-size:22px;text-outline: 2px 2px #ff0000;">Working</p></p>
+    </div>
 {% endblock content %}
