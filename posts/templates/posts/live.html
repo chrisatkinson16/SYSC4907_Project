@@ -1,20 +1,55 @@
 {% extends "posts/base.html" %}
 {% block content %}
-    <h1> Live Data </h1>
-    <h3> Current Office Space Statistics </h3>
-    <p style=";font-size:24px;">Temperature (degrees C): 21</p>
-    <p style=";font-size:24px;">Light Level: 1</p>
-    <br/>
-    <div>
-        <h3 style=";font-size:24px;">Current Weather Data</h3>
-        <p style=";font-size:24px;">Temperature (degrees C): 3</p>
-        <p style=";font-size:24px;">Humidity (%): 73 </p>
+    <body style="margin: 50px; padding: 0px; height: 100%; width: 100%; text-align: left;">
+    <div style="height: 100%; width: 100%;">
+
+    <div style="height:10%; width: 100%; text-align: center; background-color: light grey;"></div>
+
+    <div style="height:60%; width: 100%; display: table;">
+    <div style="float:left; height:100%; width: 35%; background-color: light grey;">
+        <table style="display: inline-block; border: 1px solid; float: left; ">
+		<tr>
+			<td>
+                <h3> Recommendation </h3>
+                <br />
+                <h4> Most Recent: </h4>
+                <p> {{output5}} </p>
+                <br />
+                <h4> Past: </h4>
+                <p> {{output2}} </p>
+                <p> {{output3}} </p>
+                <p> {{output4}} </p>
+                <p> {{output1}} </p>
+            </td>
+        </tr>
+		</table>
     </div>
-    <br/>
-    <div>
-        <h3 style=";font-size:24px;">Sensor Health</h3>
-        <p style=";font-size:24px;">Sensor 1:  <p style="color:#038c27;font-size:22px;text-outline: 2px 2px #ff0000;">Working</p></p>
-        <p style=";font-size:24px;">Sensor 2:  <p style="color:#038c27;font-size:22px;text-outline: 2px 2px #ff0000;">Working</p></p>
-        <p style=";font-size:24px;">Sensor 3:  <p style="color:#038c27;font-size:22px;text-outline: 2px 2px #ff0000;">Working</p></p>
+
+    <div style="float:left; height:100%; width: 29%; background-color: light grey;">
+        <h3> Office Status: </h3>
+        <p style="color:#038c27;font-size:28px;text-outline: 2px 2px #ff0000;">Not Full</p>
+        <br />
+        <br />
+        <br />
+        <h4> Spots Occupied: </h4>
+        <p style="color:#038c27;font-size:28px;text-outline: 2px 2px #ff0000;">2/3</p>
+        <br />
     </div>
+
+    <div style="float:left; height:100%; width: 36%; background-color: light grey;">
+        <h3> Office Preferences: </h3>
+        <h4> Temperature Range: </h4>
+        <p style=";font-size:28px;">18°C  - 23°C</p>
+        <br />
+         <br />
+        <h4> Office Hours of Operation: </h4>
+        <p style=";font-size:28px;">8:00am - 5:00pm</p>
+    </div>
+
+    </div>
+
+    <div style="height:10%; width: 100%; text-align: center; background-color: light grey;"></div>
+
+    </div>
+    </body>
 {% endblock content %}
