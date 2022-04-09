@@ -37,15 +37,16 @@ def recommendation(request):
         'output2': rec(2),
         'output3': rec(3),
         'output4': rec(4),
+        'output5': rec(5)
     }
 
     return render(request, 'posts/recommendation.html', context)
 
 
-def capacity(request):
+def preferences(request):
     context = {
     }
-    return render(request, 'posts/capacity.html', context)
+    return render(request, 'posts/preferences.html', context)
 
 
 from twilio.rest import Client
@@ -54,7 +55,7 @@ account_sid = "AC1faeb5a17a707334c4167c42d28bbe9d"
 auth_token = '92356264b9e6ef6b88178a500feb8e42'
 client = Client(account_sid, auth_token)
 message = client.messages.create(
-    body=rec(4),
+    body=rec(5),
     from_="+18507559843",
     to="+16138063817")
 message.sid
