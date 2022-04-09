@@ -1,3 +1,4 @@
+"""
 import csv
 import json
 import os
@@ -207,6 +208,7 @@ def start_dms():
             compare_scores(metric, datatypes, decisions)
 
         time.sleep(60)
+"""
 
 
 def rec(x):
@@ -223,4 +225,6 @@ def rec(x):
     return dms
 
 
+"""
 start_dms()
+"""
