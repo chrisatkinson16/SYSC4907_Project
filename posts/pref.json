@@ -1,14 +1,20 @@
 {
   "Preferences": {
     "Office Closed": {
-      "Temperature": "18",
       "Light": "0",
       "Motion": "0"
     },
     "Office Open": {
-      "Temperature": "21",
       "Light": "1",
       "Motion": "1"
+    },
+    "Temperature": {
+      "Minimum": "18",
+      "Maximum": "23"
+    },
+    "Hours of Operation": {
+      "Open": "8",
+      "Close": "17"
     }
   }
 }
