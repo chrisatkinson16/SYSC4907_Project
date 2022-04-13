@@ -41,15 +41,22 @@ http://localhost:8000/
 This will open the web page on port 8000 and you can navigate between subpages by following buttons on the top of the site for individual tabs.
 
 
------------------
-Overview of Files   
------------------
+-----------------------------
+Overview of Files and Folders   
+-----------------------------
 
-The following is a brief overview of the files listed:
+The following is a brief overview of the files and folders listed:
 
 
-SensorOutput.py: Output of the sensors
+ner-spacey-doccano: This is the named entity recognition script created by the other group (smart garden team) that this system uses to pick out keywords from
+the social media posts to make decisions based upon.
 
-Server.py: Manages the outputs
+posts: This is where all the server code is located including the decision making system, the connecting code between RPis and databases, as well as the 
+overall web application html files for the tabs and page layout.
 
-GUI.py: Graphical User Interface that displays information for the user
+RPi: This is where all the code for reading from sensors from each RPi.
+
+Smart Office: This is where the admin page for creating a few components on the web applciation is created and located.
+
+manage.py: This is the python file that runs the web applciation's server which is highlighted in the instructions to run the code above.
+
