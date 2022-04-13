@@ -30,9 +30,15 @@ onto the RPi and open temp_output.py and start running it. Do this on all RPi no
 After that you need to open the main project code on the main computer running the program and run RPi mqtt connect.py. 
 This will connect the RPi to the main code outputs for decision making.
 
-You can then run the GUI class and go to the website for the Web applicaiton to see the outputs and reccomendations there.
+You can then run the web application by running the following command in the terminal of the project:
 
-Finally run DMS.py to start getting recommendations that will be outputted on the web application. 
+python manage.py runserver
+
+This runs the server using the manage.py file and the web page can be accessed by following the link provided:
+
+http://localhost:8000/
+
+This will open the web page on port 8000 and you can navigate between subpages by following buttons on the top of the site for individual tabs.
 
 
 -----------------
